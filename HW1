@@ -1,0 +1,239 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "20aa6eb9",
+   "metadata": {},
+   "source": [
+    "This challenge requires you to write a function that maps some singular forms of English nouns to plural. \n",
+    "\n",
+    "i) Incorporate rules 2, 3, 5, and 6 https://www.grammarly.com/blog/plural-nouns/. \n",
+    "\n",
+    "ii) Use endswith method in Python.\n",
+    "\n",
+    "iii) Raise an exception if the argument is not a string.\n",
+    "\n",
+    "iv) Use your function to convert each element of the list to its singular form using list comprehensions.\n",
+    "\n",
+    "singulars = ['lunch', 'tax', 'gas', 'puppy', 'crush', 'fish', 'itch','boss', 'kiss', 'batch', 'box']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "7128ccbc",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "lunches\n",
+      "taxes\n",
+      "gases\n",
+      "puppies\n",
+      "crushes\n",
+      "fishes\n",
+      "itches\n",
+      "bosses\n",
+      "kisses\n",
+      "batches\n",
+      "boxes\n"
+     ]
+    }
+   ],
+   "source": [
+    "# for loop\n",
+    "singulars = [\"lunch\", \"tax\", \"gas\", \"puppy\", \"crush\", \"fish\", \"itch\", \"boss\", \"kiss\", \"batch\", \"box\"]\n",
+    "for i in singulars:\n",
+    "    modifiedWord = \"\"\n",
+    "    if i.endswith(\"y\"):\n",
+    "        modifiedWord = i[0:len(i) -1] + \"ies\"\n",
+    "    elif i.endswith((\"s\", \"ss\", \"sh\", \"ch\", \"x\", \"z\")):\n",
+    "        modifiedWord = i[0:len(i)] + \"es\"\n",
+    "    else:\n",
+    "        modifiedWord = i + \"s\"\n",
+    "    print(modifiedWord)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 164,
+   "id": "f8c46903",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "lunches\n",
+      "taxes\n",
+      "gases\n",
+      "puppies\n",
+      "crushes\n",
+      "fishes\n",
+      "itches\n",
+      "bosses\n",
+      "kisses\n",
+      "batches\n",
+      "boxes\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "def plurals():\n",
+    "    singulars = [\"lunch\", \"tax\", \"gas\", \"puppy\", \"crush\", \"fish\", \"itch\", \"boss\", \"kiss\", \"batch\", \"box\"]\n",
+    "for i in singulars:\n",
+    "    modifiedWord = \"\"\n",
+    "    if i.endswith(\"y\"):\n",
+    "        modifiedWord = i[0:len(i) -1] + \"ies\"\n",
+    "    elif i.endswith((\"s\", \"ss\", \"sh\", \"ch\", \"x\", \"z\")):\n",
+    "        modifiedWord = i[0:len(i)] + \"es\"\n",
+    "    else:\n",
+    "        modifiedWord = i + \"s\"\n",
+    "    print(modifiedWord)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 54,
+   "id": "cb8b685a",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['lunches',\n",
+       " 'taxes',\n",
+       " 'gases',\n",
+       " 'puppies',\n",
+       " 'crushes',\n",
+       " 'fishes',\n",
+       " 'itches',\n",
+       " 'bosses',\n",
+       " 'kisses',\n",
+       " 'batches',\n",
+       " 'boxes']"
+      ]
+     },
+     "execution_count": 54,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# function with the for loop to pluralize words and use list comprehension to append to a list\n",
+    "\n",
+    "singulars = [\"lunch\", \"tax\", \"gas\", \"puppy\", \"crush\", \"fish\", \"itch\", \"boss\", \"kiss\", \"batch\", \"box\"]\n",
+    "\n",
+    "def plurals(word_list):\n",
+    "    string_plural = [] # create an empty list for plurals\n",
+    "    for i in singulars:\n",
+    "        if i.endswith(\"y\"):\n",
+    "            modifiedWord = i[0:len(i) -1] + \"ies\"\n",
+    "        elif i.endswith((\"s\", \"ss\", \"sh\", \"ch\", \"x\", \"z\")):\n",
+    "            modifiedWord = i[0:len(i)] + \"es\"\n",
+    "        else:\n",
+    "            modifiedWord = i + \"s\"\n",
+    "        string_plural.append(modifiedWord) # using list comprehension to append the plurals to a list\n",
+    "    return string_plural \n",
+    "\n",
+    "result = plurals(singulars)\n",
+    "result\n",
+    "    "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "id": "f21dd746",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "The error is : <class 'AttributeError'>\n",
+      "This is not a string : [3]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# function refined('i' renamed to 'string_in_list') and added the try and except clause\n",
+    "import sys\n",
+    "\n",
+    "singulars = [\"lunch\", \"tax\", \"gas\", \"puppy\", \"crush\", \"fish\", \"itch\", \"boss\", \"kiss\", \"batch\", \"box\", 3]\n",
+    "\n",
+    "def plurals(word_list):    \n",
+    "    string_in_plural = []\n",
+    "    try:\n",
+    "        for string_in_list in singulars:\n",
+    "            if string_in_list.endswith(\"y\"):\n",
+    "                modifiedWord = string_in_list[0:len(string_in_list) -1] + \"ies\"\n",
+    "            elif string_in_list.endswith((\"s\", \"ss\", \"sh\", \"ch\", \"x\", \"z\")):\n",
+    "                modifiedWord = string_in_list[0:len(string_in_list)] + \"es\"\n",
+    "            else:\n",
+    "                modifiedWord =  string_in_list + \"s\"\n",
+    "            string_in_plural.append(modifiedWord)\n",
+    "        return string_in_plural\n",
+    "    except Exception as e:\n",
+    "        exc_type, exc_obj, exc_tb = sys.exc_info()\n",
+    "        print('The error is : '+ str(exc_type))\n",
+    "        print('This is not a string : [' + str(string_in_list) + ']')\n",
+    "\n",
+    "\n",
+    "final_result = plurals(singulars)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "id": "c8a88ace",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "IndexError",
+     "evalue": "string index out of range",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mIndexError\u001b[0m                                Traceback (most recent call last)",
+      "\u001b[0;32m/var/folders/h6/mdj7bzln0bx5h3xx3kxs6lvm0000gn/T/ipykernel_22138/66678451.py\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0mtest_input\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;34m\"lunches, gases\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 2\u001b[0;31m \u001b[0mplurals\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;34m[\u001b[0m\u001b[0mi\u001b[0m \u001b[0;32mfor\u001b[0m \u001b[0mi\u001b[0m \u001b[0;32min\u001b[0m \u001b[0mtest_input\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msplit\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'es'\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;32mif\u001b[0m \u001b[0mi\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m-\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m==\u001b[0m\u001b[0;34m's'\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      3\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mplurals\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m/var/folders/h6/mdj7bzln0bx5h3xx3kxs6lvm0000gn/T/ipykernel_22138/66678451.py\u001b[0m in \u001b[0;36m<listcomp>\u001b[0;34m(.0)\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0mtest_input\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;34m\"lunches, gases\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 2\u001b[0;31m \u001b[0mplurals\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;34m[\u001b[0m\u001b[0mi\u001b[0m \u001b[0;32mfor\u001b[0m \u001b[0mi\u001b[0m \u001b[0;32min\u001b[0m \u001b[0mtest_input\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msplit\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'es'\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;32mif\u001b[0m \u001b[0mi\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m-\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m==\u001b[0m\u001b[0;34m's'\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      3\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mplurals\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;31mIndexError\u001b[0m: string index out of range"
+     ]
+    }
+   ],
+   "source": [
+    "# tried the last part\n",
+    "result = [\"lunches\", \"taxes\", \"gases\", \"puppies\", \"crushes\", \"fishes\", \"itches\", \"bosses\", \"kisses\", \"batches\", \"boxes\"]\n",
+    "\n",
+    "singulars = [i for i in result if i[-2]=='es']\n",
+    "\n",
+    "print(singulars)\n"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.7"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
